@@ -1,64 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Omar Zúñiga — Android Developer</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Omar Zúñiga · Android Developer</title>
+  <meta name="description" content="Android Developer portfolio – apps, experience, skills, and contact." />
+  <meta name="theme-color" content="#0ea5ff" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Omar Zúñiga · Android Developer" />
+  <meta property="og:description" content="Android Developer portfolio – apps, experience, skills, and contact." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/og-image.png" />
+  <meta property="og:url" content="https://example.com" />
+  <!-- Fonts (system stack for performance) -->
   <style>
-    :root{
-      --bg:#0b0b0f;
-      --panel:#0f1117;
-      --ink:#e6f1ff;
-      --sub:#9cc7ff;
-      --blue:#2aa8ff;
-      --blue-2:#137bd4;
-      --line:#1b2636;
-      --muted:#a9b6cc;
-      --chip:#0d1a2b;
-      --shadow:0 8px 30px rgba(0,0,0,.25);
-      --radius:14px;
-      --radius-sm:10px;
-      --radius-xs:8px;
+    :root {
+      --bg: #0b0d12;             /* near-black */
+      --panel: #0f1220;          /* dark blue-gray */
+      --panel-2: #0b1220;
+      --text: #e6f1ff;           /* off-white */
+      --muted: #a6b3c2;          /* muted text */
+      --blue: #0ea5ff;           /* primary accent */
+      --blue-2: #3b82f6;         /* secondary accent */
+      --cyan: #22d3ee;           /* subtle accent */
+      --outline: #1f2a44;        /* focus ring */
+      --ok: #22c55e;
+      --bad: #ef4444;
+      --shadow: 0 10px 30px -10px rgba(14,165,255,.3);
+      --radius: 16px;
+      --radius-lg: 24px;
+      --maxw: 1100px;
     }
-    *{box-sizing:border-box}
-    body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:system-ui,Segoe UI,Roboto}
-    a{color:var(--blue);text-decoration:none}
-    a:hover{text-decoration:underline}
-    .container{max-width:1100px;margin:0 auto;padding:0 16px}
-    header.site{position:sticky;top:0;z-index:50;background:#0009;border-bottom:1px solid var(--line)}
-    .nav{display:flex;justify-content:space-between;align-items:center;padding:14px 0}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:700}
-    .logo{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--blue),var(--blue-2))}
-    .links{display:flex;gap:8px}
-    .links a{padding:8px 12px;border-radius:8px;color:var(--sub)}
-    section{padding:64px 0;border-bottom:1px solid var(--line)}
-    h1{font-size:38px;margin:0 0 10px}
-    h2{font-size:26px;margin:0 0 22px}
-    p{line-height:1.6;color:var(--muted)}
-    .hero{background:radial-gradient(70% 60% at 20% 0%,rgba(38,160,255,.15),transparent 60%)}
-    .hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
-    .panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
-    .btn{padding:10px 14px;border-radius:12px;background:#0b1c2d;color:#e7f4ff;display:inline-block}
-    .btn.primary{background:linear-gradient(180deg,var(--blue),var(--blue-2));color:white}
-    .chip{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--chip);color:#cfe6ff;font-size:13px}
-    .list{display:flex;flex-wrap:wrap;gap:8px}
-    .tag{background:#0c1c2f;border:1px solid #103a69;color:#d6eaff;border-radius:999px;padding:6px 12px;font-size:14px}
-    /* --- FIXED TIMELINE --- */
-    .timeline{position:relative;padding-left:32px}
-    .timeline:before{content:"";position:absolute;left:12px;top:0;bottom:0;width:2px;background:#0e1f33}
-    .item{position:relative;margin:0 0 24px}
-    .dot{position:absolute;left:6px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 3px #071727}
-    .item h3{margin:0 32px 4px;font-size:18px}
-    .when{color:#9fc6ff;font-size:14px;margin-bottom:6px}
-    .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
-    footer{padding:32px 0;border-top:1px solid var(--line);color:#bcd8ff;text-align:center}
+
+    @media (prefers-color-scheme: light) {
+      :root { --bg: #f7fbff; --panel:#ffffff; --text:#0b0d12; --muted:#475569; --outline:#93c5fd; }
+      html { color-scheme: light; }
+    }
+
+    * { box-sizing: border-box; }
+    html { color-scheme: dark; scroll-behavior: smooth; }
+    body { margin: 0; font: 16px/1.7 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji"; background: radial-gradient(1000px 600px at 80% -10%, rgba(14,165,255,.15), transparent), var(--bg); color: var(--text); }
+
+    /* Layout helpers */
+    .wrap { max-width: var(--maxw); margin-inline: auto; padding: 0 20px; }
+    .grid { display: grid; gap: 24px; }
+    .two { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .three { grid-template-columns: repeat(3, minmax(0,1fr)); }
+
+    /* Top nav */
+    header.site { position: sticky; top: 0; z-index: 60; backdrop-filter: saturate(140%) blur(10px); background: linear-gradient(180deg, rgba(11,13,18,.85), rgba(11,13,18,.55)); border-bottom: 1px solid rgba(62,82,120,.25); }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .brand { display: inline-flex; gap: 10px; align-items: center; font-weight: 700; letter-spacing: .4px; text-decoration: none; color: var(--text); }
+    .brand .logo { width: 28px; height: 28px; border-radius: 8px; background: linear-gradient(135deg, var(--blue), var(--blue-2)); box-shadow: var(--shadow); display: grid; place-items:center; }
+    .brand .logo svg { width: 18px; height: 18px; fill: white; }
+    nav a { color: var(--muted); text-decoration: none; margin-left: 20px; padding: 8px 12px; border-radius: 10px; }
+    nav a:hover, nav a:focus { color: var(--text); outline: none; background: rgba(14,165,255,.12); }
+
+    /* Hero */
+    .hero { padding: 72px 0 40px; position: relative; overflow: clip; }
+    .badge { display: inline-flex; gap: 10px; align-items: center; border: 1px solid rgba(62,82,120,.35); border-radius: 999px; padding: 6px 12px; color: var(--muted); background: rgba(15,18,32,.6); }
+    .badge .dot { width: 8px; height: 8px; border-radius: 999px; background: radial-gradient(circle at 30% 30%, #fff, var(--blue)); box-shadow: 0 0 12px var(--blue); }
+
+    h1 { font-size: clamp(36px, 3.8vw, 54px); line-height: 1.1; margin: 16px 0 12px; letter-spacing: .3px; }
+    .lead { font-size: clamp(16px, 1.6vw, 19px); color: var(--muted); max-width: 70ch; }
+    .cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 26px; }
+    .btn { --_bg: linear-gradient(135deg, var(--blue), var(--blue-2)); display: inline-flex; gap: 10px; align-items: center; border: 1px solid rgba(62,82,120,.45); text-decoration: none; color: white; background: var(--_bg); padding: 12px 16px; border-radius: 14px; box-shadow: var(--shadow); font-weight: 600; }
+    .btn.ghost { background: transparent; color: var(--text); }
+    .btn.ghost:hover { background: rgba(14,165,255,.12); }
+
+    /* Sections */
+    section { padding: 56px 0; }
+    section:nth-of-type(odd) { background: linear-gradient(180deg, transparent, rgba(62,82,120,.06)); }
+    .section-title { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; }
+    .section-title .bar { width: 20px; height: 20px; border-radius: 6px; background: linear-gradient(135deg, var(--blue), var(--cyan)); box-shadow: var(--shadow); }
+
+    /* About */
+    .about { background: radial-gradient(700px 400px at 15% 0%, rgba(34,211,238,.08), transparent); }
+    .about-card { background: var(--panel); border: 1px solid rgba(86,110,150,.25); border-radius: var(--radius-lg); padding: 22px; box-shadow: var(--shadow); }
+    .keypoints { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px 18px; color: var(--muted); }
+
+    /* Skills */
+    .skills { }
+    .chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; background: rgba(14,165,255,.08); color: var(--text); border: 1px solid rgba(86,110,150,.28); }
+    .chip svg { width: 14px; height: 14px; fill: currentColor; }
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    /* Experience */
+    .timeline { position: relative; }
+    .timeline:before { content: ""; position: absolute; left: 12px; top: 0; bottom: 0; width: 2px; background: linear-gradient(var(--blue), transparent); opacity: .6; }
+    .xp { position: relative; padding-left: 44px; margin: 0 0 24px; }
+    .xp::marker { content: none; }
+    .xp .dot { position: absolute; left: 6px; top: .6em; width: 14px; height: 14px; border-radius: 999px; background: radial-gradient(circle at 30% 30%, #fff, var(--blue)); box-shadow: 0 0 0 3px rgba(14,165,255,.15), 0 6px 16px -4px rgba(14,165,255,.35); }
+    .xp .card { background: var(--panel); border: 1px solid rgba(86,110,150,.25); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); }
+    .xp h3 { margin: 0 0 6px; font-size: 18px; }
+    .xp .meta { color: var(--muted); font-size: 14px; }
+    .xp .tags { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
+
+    /* Projects */
+    .card { background: var(--panel); border: 1px solid rgba(86,110,150,.25); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); display: grid; gap: 10px; }
+    .card h3 { margin: 0; font-size: 18px; }
+    .card p { margin: 0; color: var(--muted); }
+    .card a.more { color: var(--cyan); text-decoration: none; }
+    .card a.more:hover { text-decoration: underline; }
+
+    /* Contact */
+    .contact { background: linear-gradient(180deg, rgba(14,165,255,.08), transparent), radial-gradient(800px 500px at 85% 20%, rgba(59,130,246,.12), transparent); }
+    form { display: grid; gap: 14px; max-width: 720px; }
+    label { font-weight: 600; font-size: 14px; color: var(--muted); }
+    input, textarea { width: 100%; padding: 12px 14px; background: var(--panel); color: var(--text); border: 1px solid rgba(86,110,150,.3); border-radius: 12px; outline: none; }
+    input:focus, textarea:focus, a:focus-visible, .btn:focus-visible { outline: 3px solid var(--outline); outline-offset: 2px; }
+    textarea { resize: vertical; min-height: 120px; }
+
+    /* Footer */
+    footer { padding: 28px 0 56px; color: var(--muted); }
+    .social { display: flex; gap: 14px; }
+    .social a { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 10px; border: 1px solid rgba(86,110,150,.25); color: var(--text); text-decoration: none; background: rgba(14,165,255,.06); }
+    .social a:hover { background: rgba(14,165,255,.14); }
+
+    /* Responsive */
+    @media (max-width: 880px) {
+      .two, .three { grid-template-columns: 1fr; }
+      .xp { padding-left: 36px; }
+      .timeline:before { left: 9px; }
+    }
+
+    /* Motion sensitivity */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; animation: none !important; }
+    }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Omar Zúñiga",
+    "jobTitle": "Android Developer",
+    "url": "https://example.com",
+    "sameAs": [
+      "https://mx.linkedin.com/in/omarzg94",
+      "https://github.com/omarzuniga"
+    ],
+    "knowsAbout": [
+      "Android", "Kotlin", "Jetpack Compose", "MVVM", "Clean Architecture", "GraphQL", "Retrofit", "Hilt", "Firebase", "Accessibility", "BLE", "Payments"
+    ]
+  }
+  </script>
 </head>
 <body>
   <header class="site">
-    <div class="container nav">
-      <div class="brand"><div class="logo"></div> Omar.dev</div>
-      <nav class="links">
+    <div class="wrap nav" role="navigation" aria-label="Primary">
+      <a class="brand" href="#home">
+        <span class="logo" aria-hidden="true">
+          <!-- Minimal Android-like mark -->
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v7a3 3 0 0 1-3 3H10a3 3 0 0 1-3-3v-7zM9 5a1 1 0 1 1 0-2h6a1 1 0 1 1 0 2H9z"/></svg>
+        </span>
+        <span>Omar Zúñiga</span>
+      </a>
+      <nav>
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#experience">Experience</a>
@@ -68,62 +167,160 @@
     </div>
   </header>
 
-  <main>
-    <section class="hero">
-      <div class="container hero-inner">
-        <div>
-          <h1>Hi, I’m Omar Zúñiga</h1>
-          <p>Senior Android Engineer — Compose • Clean Architecture • KMP</p>
-          <p>I build fast, reliable Android apps, integrate complex SDKs (payments, BLE, video), and mentor teams to ship quality.</p>
-          <a class="btn primary" href="mailto:omar.alejandro.94@outlook.com">Get in touch</a>
-        </div>
-        <div class="panel">
-          <h2>What I ship</h2>
-          <p>Modern Android apps, complex integrations, quality & observability.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="experience">
-      <div class="container">
-        <h2>Experience</h2>
-        <div class="timeline">
-          <div class="item">
-            <span class="dot"></span>
-            <h3>Senior Android Engineer — Brightcove (Contract)</h3>
-            <div class="when">Jun 2024 – Mar 2025</div>
-            <p>Modernized legacy codebases, migrated to Compose & Clean Architecture, implemented analytics & accessibility, built testing strategy.</p>
-          </div>
-          <div class="item">
-            <span class="dot"></span>
-            <h3>Senior Android Developer — Nimble Gravity</h3>
-            <div class="when">Jan 2023 – Jun 2024</div>
-            <p>Led mobile features with GraphQL and modular architecture. Improved CI and performance budgets.</p>
-          </div>
-          <div class="item">
-            <span class="dot"></span>
-            <h3>Android Engineer — Multiple Clients</h3>
-            <div class="when">2017 – 2023</div>
-            <p>Payments (EMV/Verifone), BLE, geolocation, and streaming apps for brands like Bimbo, Grupo Modelo, and others.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="container">
-        <h2>Contact</h2>
-        <div class="card">
-          <p><a class="btn secondary" href="mailto:omar.alejandro.94@outlook.com" target="_blank">Email me</a></p>
-          <p><a class="btn primary" href="https://mx.linkedin.com/in/omarzg94" target="_blank">LinkedIn</a></p>
-        </div>
-      </div>
-    </section>
+  <main id="home" class="wrap hero" aria-label="Intro">
+    <span class="badge"><span class="dot" aria-hidden="true"></span> Android Developer · Kotlin · Compose</span>
+    <h1>Building sleek, accessible Android apps that scale.</h1>
+    <p class="lead">I craft mobile experiences with <strong>Kotlin</strong>, <strong>Jetpack Compose</strong>, and <strong>Clean Architecture</strong>. I’ve led refactors, payment integrations, BLE features, and accessibility upgrades across multiple industries.</p>
+    <div class="cta">
+      <a class="btn" href="#projects" aria-label="See featured projects">View Projects</a>
+      <a class="btn ghost" href="mailto:omar.alejandro.94@outlook.com" aria-label="Email Omar">Contact Me</a>
+      <a class="btn ghost" href="/Omar_Zuniga_Resume.pdf" aria-label="Download resume">Download Résumé</a>
+    </div>
   </main>
 
+  <section id="about" class="about">
+    <div class="wrap grid two">
+      <article class="about-card">
+        <div class="section-title"><span class="bar" aria-hidden="true"></span><h2>About</h2></div>
+        <p>Android Developer with over a decade of experience shipping apps for media, health, mobility, and fintech. I focus on performance, reliability, and maintainable code. I enjoy mentoring teams and raising the bar on accessibility and testing.</p>
+        <ul class="keypoints">
+          <li>Compose-first UI and modern Kotlin</li>
+          <li>MVVM → Clean Architecture migrations</li>
+          <li>Payments (Verifone SDK, EMV/NFC)</li>
+          <li>GraphQL & REST integrations</li>
+          <li>Analytics (Amplitude, Adobe)</li>
+          <li>Accessibility (TalkBack, contrast)</li>
+        </ul>
+      </article>
+      <aside class="about-card" aria-label="Quick facts">
+        <div class="section-title"><span class="bar" aria-hidden="true"></span><h2>Quick Facts</h2></div>
+        <p><strong>Location:</strong> Mexico City · open to remote/onsite hybrid.</p>
+        <p><strong>Highlights:</strong> Refactored legacy apps to current AndroidX stack; built secure transaction flows; implemented feature flags; delivered high test coverage with unit & instrumented tests.</p>
+        <p><strong>Speaking:</strong> Kotlin, Compose, Testing, Accessibility.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section id="skills" class="skills">
+    <div class="wrap">
+      <div class="section-title"><span class="bar" aria-hidden="true"></span><h2>Skills</h2></div>
+      <div class="chips" aria-label="Skill tags">
+        <span class="chip">Kotlin</span>
+        <span class="chip">Jetpack Compose</span>
+        <span class="chip">Coroutines & Flow</span>
+        <span class="chip">Clean Architecture</span>
+        <span class="chip">Hilt / Koin</span>
+        <span class="chip">Retrofit / GraphQL</span>
+        <span class="chip">Room / SQLDelight</span>
+        <span class="chip">ExoPlayer</span>
+        <span class="chip">Firebase</span>
+        <span class="chip">Amplitude / Adobe Analytics</span>
+        <span class="chip">Accessibility</span>
+        <span class="chip">BLE</span>
+        <span class="chip">Payments (EMV/NFC)</span>
+        <span class="chip">Unit / UI Testing</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="experience">
+    <div class="wrap">
+      <div class="section-title"><span class="bar" aria-hidden="true"></span><h2>Experience</h2></div>
+      <ol class="timeline" aria-label="Work experience timeline">
+        <li class="xp">
+          <span class="dot" aria-hidden="true"></span>
+          <div class="card">
+            <h3>Senior Android Developer · Brightcove</h3>
+            <div class="meta">Jun 2024 – Mar 2025 · Media & Streaming</div>
+            <p>Led modernization of legacy Android app stacks, migrated to Compose, implemented video playback features with ExoPlayer, and improved QA workflows with unit & instrumented tests.</p>
+            <div class="tags">
+              <span class="chip">Compose</span><span class="chip">ExoPlayer</span><span class="chip">Feature Flags</span><span class="chip">Testing</span>
+            </div>
+          </div>
+        </li>
+        <li class="xp">
+          <span class="dot" aria-hidden="true"></span>
+          <div class="card">
+            <h3>Senior Android Developer · Nimble Gravity</h3>
+            <div class="meta">Jan 2023 – Jun 2024 · Consulting</div>
+            <p>Delivered apps for health and mobility. Introduced Clean Architecture, improved analytics and accessibility, and mentored engineers in best practices.</p>
+            <div class="tags"><span class="chip">Clean Architecture</span><span class="chip">Accessibility</span><span class="chip">Analytics</span></div>
+          </div>
+        </li>
+        <li class="xp">
+          <span class="dot" aria-hidden="true"></span>
+          <div class="card">
+            <h3>Android Developer · Softon Digital & Others</h3>
+            <div class="meta">2017 – 2023</div>
+            <p>Worked across fintech, retail, and logistics. Implemented payments (EMV/NFC, Verifone), BLE features, geolocation, and security (SSL pinning, code obfuscation).</p>
+            <div class="tags"><span class="chip">Payments</span><span class="chip">BLE</span><span class="chip">Security</span></div>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="projects" class="projects">
+    <div class="wrap">
+      <div class="section-title"><span class="bar" aria-hidden="true"></span><h2>Featured Projects</h2></div>
+      <div class="grid three">
+        <article class="card">
+          <h3>Met Opera – Android App</h3>
+          <p>Refreshed media player UX, improved accessibility and analytics, and upgraded libraries. Wrote docs for FireOS IAP testing.</p>
+          <a class="more" href="#" aria-label="Read more about Met Opera app">Case study →</a>
+        </article>
+        <article class="card">
+          <h3>Unagi Scooters</h3>
+          <p>Implemented BLE connectivity, geofencing, deep links, notifications, and modular architecture for foldables and tablets.</p>
+          <a class="more" href="#">Case study →</a>
+        </article>
+        <article class="card">
+          <h3>Included Health</h3>
+          <p>GraphQL with Apollo, Amplitude reporting, Compose migration, and accessibility improvements (contrast, scaling, TalkBack).</p>
+          <a class="more" href="#">Case study →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <div class="section-title"><span class="bar" aria-hidden="true"></span><h2>Contact</h2></div>
+      <p class="lead">Have an opportunity or project? Let’s talk.</p>
+      <form action="mailto:omar.alejandro.94@outlook.com" method="post" enctype="text/plain">
+        <div>
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" placeholder="Your name" required />
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="your@email.com" required />
+        </div>
+        <div>
+          <label for="msg">Message</label>
+          <textarea id="msg" name="message" placeholder="What would you like to build?" required></textarea>
+        </div>
+        <button class="btn" type="submit">Send</button>
+      </form>
+    </div>
+  </section>
+
   <footer>
-    <p>© <span id="year"></span> Omar Zúñiga. All rights reserved.</p>
+    <div class="wrap grid two">
+      <small>© <span id="y"></span> Omar Zúñiga. All rights reserved.</small>
+      <div class="social" aria-label="Social links">
+        <a href="https://mx.linkedin.com/in/omarzg94" aria-label="LinkedIn" title="LinkedIn">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 8.98h4v12H3v-12zM14.5 9c2.64 0 4.5 1.99 4.5 5.3V21h-4v-5.7c0-1.36-.62-2.3-1.86-2.3-1.08 0-1.64.69-1.92 1.36-.1.22-.12.53-.12.85V21h-4s.05-10.6 0-11.7h4v1.66c.53-.82 1.48-1.96 3.4-1.96z"/></svg>
+        </a>
+        <a href="https://github.com/omarzg94" aria-label="GitHub" title="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.42c.58.1.79-.25.79-.56v-2c-3.23.7-3.9-1.56-3.9-1.56-.52-1.3-1.27-1.65-1.27-1.65-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.67 1.25 3.32.95.1-.76.4-1.25.72-1.54-2.58-.3-5.29-1.29-5.29-5.74 0-1.27.45-2.3 1.2-3.12-.12-.29-.53-1.46.12-3.04 0 0 .99-.32 3.24 1.19a11.2 11.2 0 0 1 5.9 0c2.25-1.5 3.24-1.19 3.24-1.19.64 1.58.24 2.75.12 3.04.75.83 1.2 1.85 1.2 3.12 0 4.46-2.71 5.43-5.29 5.73.41.35.76 1.03.76 2.08v3.09c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg>
+        </a>
+        <a href="mailto:omar.alejandro.94@outlook.com" aria-label="Email" title="Email">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 6H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zm0 2v.01L12 13 4 8.01V8h16z"/></svg>
+        </a>
+      </div>
+    </div>
+    <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
   </footer>
-  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
 </body>
 </html>
