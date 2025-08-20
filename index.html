@@ -3,46 +3,127 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to My Website</title>
+  <title>Omar Zúñiga — Android Developer</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #4facfe, #00f2fe);
-      color: white;
-      text-align: center;
+    :root{
+      --bg:#0b0b0f;
+      --panel:#0f1117;
+      --ink:#e6f1ff;
+      --sub:#9cc7ff;
+      --blue:#2aa8ff;
+      --blue-2:#137bd4;
+      --line:#1b2636;
+      --muted:#a9b6cc;
+      --chip:#0d1a2b;
+      --shadow:0 8px 30px rgba(0,0,0,.25);
+      --radius:14px;
+      --radius-sm:10px;
+      --radius-xs:8px;
     }
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 1.5rem;
-    }
-    a {
-      display: inline-block;
-      padding: 10px 20px;
-      font-size: 1rem;
-      text-decoration: none;
-      color: #4facfe;
-      background: white;
-      border-radius: 5px;
-      transition: 0.3s;
-    }
-    a:hover {
-      background: #f0f0f0;
-    }
+    *{box-sizing:border-box}
+    body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:system-ui,Segoe UI,Roboto}
+    a{color:var(--blue);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:1100px;margin:0 auto;padding:0 16px}
+    header.site{position:sticky;top:0;z-index:50;background:#0009;border-bottom:1px solid var(--line)}
+    .nav{display:flex;justify-content:space-between;align-items:center;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700}
+    .logo{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--blue),var(--blue-2))}
+    .links{display:flex;gap:8px}
+    .links a{padding:8px 12px;border-radius:8px;color:var(--sub)}
+    section{padding:64px 0;border-bottom:1px solid var(--line)}
+    h1{font-size:38px;margin:0 0 10px}
+    h2{font-size:26px;margin:0 0 22px}
+    p{line-height:1.6;color:var(--muted)}
+    .hero{background:radial-gradient(70% 60% at 20% 0%,rgba(38,160,255,.15),transparent 60%)}
+    .hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
+    .panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
+    .btn{padding:10px 14px;border-radius:12px;background:#0b1c2d;color:#e7f4ff;display:inline-block}
+    .btn.primary{background:linear-gradient(180deg,var(--blue),var(--blue-2));color:white}
+    .chip{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--chip);color:#cfe6ff;font-size:13px}
+    .list{display:flex;flex-wrap:wrap;gap:8px}
+    .tag{background:#0c1c2f;border:1px solid #103a69;color:#d6eaff;border-radius:999px;padding:6px 12px;font-size:14px}
+    /* --- FIXED TIMELINE --- */
+    .timeline{position:relative;padding-left:32px}
+    .timeline:before{content:"";position:absolute;left:12px;top:0;bottom:0;width:2px;background:#0e1f33}
+    .item{position:relative;margin:0 0 24px}
+    .dot{position:absolute;left:6px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 3px #071727}
+    .item h3{margin:0 32px 4px;font-size:18px}
+    .when{color:#9fc6ff;font-size:14px;margin-bottom:6px}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
+    footer{padding:32px 0;border-top:1px solid var(--line);color:#bcd8ff;text-align:center}
   </style>
 </head>
 <body>
-  <h1>🚀 Hello, World!</h1>
-  <p>My website is now live on <strong>GitHub Pages</strong> with my own domain 🎉</p>
-  <a href="https://github.com/OmarZg94/professional-website" target="_blank">View Source</a>
+  <header class="site">
+    <div class="container nav">
+      <div class="brand"><div class="logo"></div> Omar.dev</div>
+      <nav class="links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <h1>Hi, I’m Omar Zúñiga</h1>
+          <p>Senior Android Engineer — Compose • Clean Architecture • KMP</p>
+          <p>I build fast, reliable Android apps, integrate complex SDKs (payments, BLE, video), and mentor teams to ship quality.</p>
+          <a class="btn primary" href="mailto:omar.alejandro.94@outlook.com">Get in touch</a>
+        </div>
+        <div class="panel">
+          <h2>What I ship</h2>
+          <p>Modern Android apps, complex integrations, quality & observability.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <h2>Experience</h2>
+        <div class="timeline">
+          <div class="item">
+            <span class="dot"></span>
+            <h3>Senior Android Engineer — Brightcove (Contract)</h3>
+            <div class="when">Jun 2024 – Mar 2025</div>
+            <p>Modernized legacy codebases, migrated to Compose & Clean Architecture, implemented analytics & accessibility, built testing strategy.</p>
+          </div>
+          <div class="item">
+            <span class="dot"></span>
+            <h3>Senior Android Developer — Nimble Gravity</h3>
+            <div class="when">Jan 2023 – Jun 2024</div>
+            <p>Led mobile features with GraphQL and modular architecture. Improved CI and performance budgets.</p>
+          </div>
+          <div class="item">
+            <span class="dot"></span>
+            <h3>Android Engineer — Multiple Clients</h3>
+            <div class="when">2017 – 2023</div>
+            <p>Payments (EMV/Verifone), BLE, geolocation, and streaming apps for brands like Bimbo, Grupo Modelo, and others.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h2>Contact</h2>
+        <div class="card">
+          <p><a class="btn secondary" href="mailto:omar.alejandro.94@outlook.com" target="_blank">Email me</a></p>
+          <p><a class="btn primary" href="https://mx.linkedin.com/in/omarzg94" target="_blank">LinkedIn</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© <span id="year"></span> Omar Zúñiga. All rights reserved.</p>
+  </footer>
+  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
 </body>
 </html>
